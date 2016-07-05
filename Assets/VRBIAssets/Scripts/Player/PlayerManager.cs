@@ -30,55 +30,16 @@ public class PlayerManager : MonoBehaviour
 
         if (controlManager.m_leftControllerInput && controlManager.m_rightControllerInput)
         {
-
-            GameObject leftControllerObj = controlManager.m_leftControllerInput.gameObject;
-            GameObject rightControllerObj = controlManager.m_rightControllerInput.gameObject;
-
-            HandsGrabber leftGrabber = leftControllerObj.GetComponentInChildren<HandsGrabber>();
-            HandsGrabber rightGrabber = rightControllerObj.GetComponentInChildren<HandsGrabber>();
-
-            if (leftGrabber.m_collidesWith.Count != 0)
-            {
-                GameObject grabObj = leftGrabber.m_collidesWith[0].gameObject;
-
-                if (controlManager.m_leftControllerInput.m_triggerButtonState.buttonDown)
-                {
-                    leftGrabber.OnGrabObject(grabObj);
-
-                }
-                else if (leftGrabber.m_grabbedObject)
-                {
-                    leftGrabber.OnReleaseObject();
-
-
-
-                    Rigidbody rgbody = grabObj.GetComponent<Rigidbody>();
-                    rgbody.AddForce(controlManager.m_leftControllerInput.m_velocity, ForceMode.Impulse);
-
-                    Quaternion q = rgbody.transform.rotation * rgbody.inertiaTensorRotation;
-                    Vector3 T = q * Vector3.Scale(rgbody.inertiaTensor, (Quaternion.Inverse(q) * controlManager.m_leftControllerInput.m_angularVelocity));
-
-                    rgbody.AddTorque(10 * controlManager.m_leftControllerInput.m_angularVelocity, ForceMode.VelocityChange);
-
-                }
-                else
-                {
-                    leftGrabber.OnReleaseObject();
-                }
-            }
-            else
-            {
-                leftGrabber.OnReleaseObject();
-            }
+            DoHandGrabLogic(controlManager.m_leftControllerInput, controlManager.m_rightControllerInput);
+            DoHandGrabLogic(controlManager.m_rightControllerInput, controlManager.m_leftControllerInput);
         }
 
         Debug.DrawRay(controlManager.m_leftControllerInput.transform.position, controlManager.m_leftControllerInput.m_angularVelocity.normalized);
     }
 
-    void DoHandGrabLogic(VRControllerInput controllerInput)
+    void DoHandGrabLogic(VRControllerInput currentController, VRControllerInput otherController)
     {
-
-        GameObject controllerObj = controllerInput.gameObject;
+        GameObject controllerObj = currentController.gameObject;
 
         HandsGrabber handGrabber = controllerObj.GetComponentInChildren<HandsGrabber>();
 
@@ -86,24 +47,17 @@ public class PlayerManager : MonoBehaviour
         {
             GameObject grabObj = handGrabber.m_collidesWith[0].gameObject;
 
-            if (controllerInput.m_triggerButtonState.buttonDown)
+            if (currentController.m_triggerButtonState.buttonDown)
             {
                 handGrabber.OnGrabObject(grabObj);
             }
             else if (handGrabber.m_grabbedObject)
             {
                 handGrabber.OnReleaseObject();
-
-
-
+                
                 Rigidbody rgbody = grabObj.GetComponent<Rigidbody>();
-                rgbody.AddForce(controllerInput.m_velocity, ForceMode.Impulse);
-
-                Quaternion q = rgbody.transform.rotation * rgbody.inertiaTensorRotation;
-                Vector3 T = q * Vector3.Scale(rgbody.inertiaTensor, (Quaternion.Inverse(q) * controllerInput.m_angularVelocity));
-
-                rgbody.AddTorque(10 * controllerInput.m_angularVelocity, ForceMode.VelocityChange);
-
+                rgbody.AddForce(currentController.m_velocity, ForceMode.VelocityChange);
+                rgbody.AddTorque(currentController.m_angularVelocity, ForceMode.VelocityChange);
             }
             else
             {
