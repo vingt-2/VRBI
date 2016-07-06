@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class VRControllerInput : MonoBehaviour
 {
-    public const float EPISLON = 0.0001f;
+    public const float EPSILON = 0.0001f;
 
     public class ButtonState
     {
@@ -42,7 +42,8 @@ public class VRControllerInput : MonoBehaviour
 
     public Vector3 m_angularVelocity;
 
-    public int m_velocitySmoothing = 10;
+    [Range(2, 10)]
+    public int m_velocitySmoothing = 2;
 
     private float m_lastTime = 0;
 
@@ -96,7 +97,7 @@ public class VRControllerInput : MonoBehaviour
         touchState.radius = coords.magnitude;
 
         float dotV = Vector2.Dot(coords, new Vector2(1, 0));
-        if (touchState.radius > EPISLON)
+        if (touchState.radius > EPSILON)
             touchState.angle = coords.y > 0 ? Mathf.Acos(dotV) : 2 * Mathf.PI - Mathf.Acos(dotV);
         else
             touchState.angle = 0;
@@ -197,6 +198,10 @@ public class VRControllerInput : MonoBehaviour
     {
         float deltaT = time - m_lastTime;
 
+        m_velocity = Vector3.zero;
+        m_angularVelocity = Vector3.zero;
+
+
         while(m_previousPositions.Count > m_velocitySmoothing)
         {
             m_previousPositions.Dequeue();
@@ -206,10 +211,6 @@ public class VRControllerInput : MonoBehaviour
         m_previousPositions.Enqueue(transform.position);
         m_previousRotations.Enqueue(transform.forward);
         m_previousDeltaTs.Enqueue(deltaT);
-        
-
-        m_velocity = Vector3.zero;
-        m_angularVelocity = Vector3.zero;
 
         Vector3[] posArray = m_previousPositions.ToArray();
         Vector3[] rotArray = m_previousRotations.ToArray();
@@ -220,15 +221,15 @@ public class VRControllerInput : MonoBehaviour
             m_velocity += (posArray[i + 1] - posArray[i]) / deltArray[i];
 
             Vector3 x = Vector3.Cross(rotArray[i].normalized, rotArray[i + 1].normalized);
-            float theta = Mathf.Asin(x.magnitude);
-
-            m_angularVelocity += x.normalized * theta / deltArray[i];
+            
+            if(x.sqrMagnitude > EPSILON)
+                m_angularVelocity += x / deltArray[i];
         }
 
         m_velocity /= m_velocitySmoothing;
         m_angularVelocity /= m_velocitySmoothing;
 
-        if (m_velocity.magnitude < EPISLON)
+        if (m_velocity.sqrMagnitude < EPSILON)
             m_velocity = Vector3.zero;
 
     }

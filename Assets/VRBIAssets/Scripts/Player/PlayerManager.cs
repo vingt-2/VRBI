@@ -33,22 +33,37 @@ public class PlayerManager : MonoBehaviour
             DoHandGrabLogic(controlManager.m_leftControllerInput, controlManager.m_rightControllerInput);
             DoHandGrabLogic(controlManager.m_rightControllerInput, controlManager.m_leftControllerInput);
         }
-
-        Debug.DrawRay(controlManager.m_leftControllerInput.transform.position, controlManager.m_leftControllerInput.m_angularVelocity.normalized);
     }
 
     void DoHandGrabLogic(VRControllerInput currentController, VRControllerInput otherController)
     {
         GameObject controllerObj = currentController.gameObject;
+        GameObject otherControllerObj = otherController.gameObject;
 
         HandsGrabber handGrabber = controllerObj.GetComponentInChildren<HandsGrabber>();
+        HandsGrabber otherhandGrabber = otherControllerObj.GetComponentInChildren<HandsGrabber>();
 
         if (handGrabber.m_collidesWith.Count != 0)
         {
-            GameObject grabObj = handGrabber.m_collidesWith[0].gameObject;
+            GameObject grabObj = null;
+            foreach (GameObject collideObject in handGrabber.m_collidesWith)
+            {
+                if (collideObject.GetComponent<GrabableObject>() != null)
+                {
+                    grabObj = collideObject;
+                    break;
+                }
+            }
+
+            if (grabObj == null)
+                return;
 
             if (currentController.m_triggerButtonState.buttonDown)
             {
+                if(otherhandGrabber.m_grabbedObject)
+                {
+                    otherhandGrabber.OnReleaseObject();
+                }
                 handGrabber.OnGrabObject(grabObj);
             }
             else if (handGrabber.m_grabbedObject)
@@ -56,8 +71,8 @@ public class PlayerManager : MonoBehaviour
                 handGrabber.OnReleaseObject();
                 
                 Rigidbody rgbody = grabObj.GetComponent<Rigidbody>();
-                rgbody.AddForce(currentController.m_velocity, ForceMode.VelocityChange);
-                rgbody.AddTorque(currentController.m_angularVelocity, ForceMode.VelocityChange);
+                rgbody.AddForce(currentController.m_velocity, ForceMode.Impulse);
+                rgbody.AddTorque(currentController.m_angularVelocity, ForceMode.Impulse);
             }
             else
             {
@@ -67,6 +82,25 @@ public class PlayerManager : MonoBehaviour
         else
         {
             handGrabber.OnReleaseObject();
+        }
+    }
+
+    void CheckForButtonPush(VRControllerInput currentController)
+    {
+        GameObject controllerObj = currentController.gameObject;
+
+        HandsGrabber handGrabber = controllerObj.GetComponentInChildren<HandsGrabber>();
+
+        if (handGrabber.m_collidesWith.Count != 0)
+        {
+            GameObject button = null;
+            foreach (GameObject collideObject in handGrabber.m_collidesWith)
+            {
+                if (collideObject.GetComponent<ButtonObject>() != null)
+                {
+                    break;
+                }
+            }
         }
     }
 }

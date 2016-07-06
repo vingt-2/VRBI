@@ -110,6 +110,9 @@ public class VRControllerManager : MonoBehaviour {
     {
         VRControllerInput[] controllerComponents = this.GetComponentsInChildren<VRControllerInput>();
 
+        if (controllerComponents.Length < 2)
+            return;
+
         if (controllerComponents[0].gameObject.name.Equals("LeftController"))
         {
             m_leftControllerInput = controllerComponents[0];

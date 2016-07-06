@@ -39,6 +39,8 @@ public class HandsGrabber : MonoBehaviour {
 
     public void OnReleaseObject()
     {
+        if (!m_grabbedObject)
+            return;
         m_grabbedObject.transform.parent = null;
         Rigidbody rgb = m_grabbedObject.GetComponent<Rigidbody>();
         rgb.isKinematic = false;
