@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 0f4caaa9a665e2840a23c8fa1761f7dc
-timeCreated: 1467768151
+guid: 5d3df839712584345b7054ea339db6dc
+timeCreated: 1468012924
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,11 +9,10 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Tile_Ground_01
-    4300002: Tile_Ground_002
+    4300000: Tile_Stone
     9500000: //RootNode
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
