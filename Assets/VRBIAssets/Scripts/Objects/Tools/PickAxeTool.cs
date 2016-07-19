@@ -43,14 +43,34 @@ public class PickAxeTool : MonoBehaviour
             Debug.Log("Could not find Velocity Estimator for pick axe collider");
             return;
         }
-        
-        if(velEst.m_velocity.magnitude > m_speedThreshold)
+        GameObject parent = null;
+        try
+        {
+            parent = transform.parent.gameObject;
+        } catch
+        {
+            Debug.Log("PickAxe has no parent transform (Can't rumble)");
+        }
+
+        if (parent && parent.GetComponent<VRControllerRumble>())
+        {
+            parent.GetComponent<VRControllerRumble>().OnRumble(0.2f, 5);
+        }
+
+        if (velEst.m_velocity.magnitude > m_speedThreshold)
         {
             m_pickAxeHit = gobj;
             m_collideTime = Time.time;
 
             if (gobj.GetComponent<RockMine>())
-                gobj.GetComponent<RockMine>().OnPickAxeHit(m_collider.transform.position);
+            {
+                gobj.GetComponent<RockMine>().OnPickAxeHit(m_collider.transform.position, velEst.m_velocity);
+
+                if(parent && parent.GetComponent<VRControllerRumble>())
+                {
+                    parent.GetComponent<VRControllerRumble>().OnRumble(1,10);
+                }
+            }
         }
     }
 

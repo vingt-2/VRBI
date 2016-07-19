@@ -34,18 +34,6 @@ public class PlayerManager : MonoBehaviour
             CheckForHandGrab(controlManager.m_leftControllerInput, controlManager.m_rightControllerInput);
             CheckForHandGrab(controlManager.m_rightControllerInput, controlManager.m_leftControllerInput);
         }
-
-        if(m_toolInHand)
-        {
-            PickAxeTool pickaxe = m_toolInHand.GetComponent<PickAxeTool>();
-            if (pickaxe)
-            {
-                if(pickaxe.m_pickAxeHit)
-                {
-                    Debug.Log("PIckaxed yo");
-                }
-            }
-        }
     }
 
     void CheckForHandGrab(VRControllerInput currentController, VRControllerInput otherController)

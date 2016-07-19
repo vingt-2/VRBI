@@ -53,6 +53,9 @@ public class VelocityEstimator : MonoBehaviour {
 		m_previousRotations.Enqueue(transform.forward);
 		m_previousDeltaTs.Enqueue(deltaT);
 
+		if (m_previousPositions.Count < m_velocitySmoothing)
+			return;
+
 		Vector3[] posArray = m_previousPositions.ToArray();
 		Vector3[] rotArray = m_previousRotations.ToArray();
 		float[] deltArray = m_previousDeltaTs.ToArray();
