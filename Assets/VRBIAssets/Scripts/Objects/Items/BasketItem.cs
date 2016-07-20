@@ -26,8 +26,12 @@ public class BasketItem : MonoBehaviour
         if (colliders.Length > 1)
             Debug.Log("More than one basket interior collider on object:" + gameObject);
         else if(colliders.Length < 1)
+        {
             Debug.Log("Cannot find basket interior collider:" + gameObject);
-
+            return;
+        }
+        
         m_basketInteriorCollider = colliders[0];
+        m_basketInteriorCollider.m_parentBasket = this;
     }
 }
