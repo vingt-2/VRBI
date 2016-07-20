@@ -38,7 +38,7 @@ public class VRControllerInput : MonoBehaviour
 
     public short m_deviceIndex;
 
-    public float m_lastTime;
+    private float m_lastTime;
 
     void Start()
     {

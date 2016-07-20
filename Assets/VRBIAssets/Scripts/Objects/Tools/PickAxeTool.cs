@@ -64,9 +64,9 @@ public class PickAxeTool : MonoBehaviour
 
             if (gobj.GetComponent<RockMine>())
             {
-                gobj.GetComponent<RockMine>().OnPickAxeHit(m_collider.transform.position, velEst.m_velocity);
+                bool successHit = gobj.GetComponent<RockMine>().OnPickAxeHit(m_collider.transform.position, velEst.m_velocity);
 
-                if(parent && parent.GetComponent<VRControllerRumble>())
+                if(successHit && parent && parent.GetComponent<VRControllerRumble>())
                 {
                     parent.GetComponent<VRControllerRumble>().OnRumble(1,10);
                 }

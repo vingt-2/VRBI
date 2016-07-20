@@ -9,24 +9,28 @@ public class VRControllerRumble : MonoBehaviour {
         public float m_strength;
     }
 
+    public bool m_allowRumble = true;
 
     private short m_deviceIndex;
 
     private Queue<RumbleCommand> m_rumbleCommands;
 
-    void Start ()
+    void Start()
     {
         m_rumbleCommands = new Queue<RumbleCommand>();
     }
     
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         VRControllerInput controllerInput = GetComponent<VRControllerInput>();
         if(controllerInput)
         {
             m_deviceIndex = controllerInput.m_deviceIndex;
         }
+
+        if (m_rumbleCommands.Count < 1)
+            return;
 
         RumbleCommand rc = m_rumbleCommands.Dequeue();
 
@@ -35,9 +39,12 @@ public class VRControllerRumble : MonoBehaviour {
 
     public void OnRumble(float strength, float durationInFrames)
     {
-        for(uint i = 0; i < durationInFrames; i ++)
+        if(m_allowRumble)
         {
-            m_rumbleCommands.Enqueue(new RumbleCommand(strength));
+            for (uint i = 0; i < durationInFrames; i++)
+            {
+                m_rumbleCommands.Enqueue(new RumbleCommand(strength));
+            }
         }
     }
 }
