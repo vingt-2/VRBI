@@ -14,3 +14,4 @@
 # include meta files
 !*.*.meta
 !Assets/VRBIAssets
+Assets/VRBIAssets/Scenes/gym.unity

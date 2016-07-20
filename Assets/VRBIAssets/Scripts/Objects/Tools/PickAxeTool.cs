@@ -4,11 +4,12 @@ using System.Collections;
 public class PickAxeTool : MonoBehaviour
 {
     public float m_speedThreshold;
+
     public GameObject m_pickAxeHit;
 
     private PickAxeCollider m_collider;
+
     private float m_collideTime = 0;
-    private float m_lastTime = 0;
 
     void Start ()
     {
@@ -31,7 +32,6 @@ public class PickAxeTool : MonoBehaviour
             m_collideTime = 0;
             m_pickAxeHit = null;
         }
-        m_lastTime = currentTime;
     }
 
     public void OnCollide(GameObject gobj)
@@ -66,9 +66,9 @@ public class PickAxeTool : MonoBehaviour
             {
                 bool successHit = gobj.GetComponent<RockMine>().OnPickAxeHit(m_collider.transform.position, velEst.m_velocity);
 
-                if(successHit && parent && parent.GetComponent<VRControllerRumble>())
+                if (successHit && parent && parent.GetComponent<VRControllerRumble>())
                 {
-                    parent.GetComponent<VRControllerRumble>().OnRumble(1,10);
+                    parent.GetComponent<VRControllerRumble>().OnRumble(1, 10);
                 }
             }
         }

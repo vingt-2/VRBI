@@ -39,7 +39,7 @@ public class VRControllerRumble : MonoBehaviour {
 
     public void OnRumble(float strength, float durationInFrames)
     {
-        if(m_allowRumble)
+        if (m_allowRumble)
         {
             for (uint i = 0; i < durationInFrames; i++)
             {
