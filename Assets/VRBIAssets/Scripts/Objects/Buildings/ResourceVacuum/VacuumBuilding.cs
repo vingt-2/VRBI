@@ -4,15 +4,14 @@ using System.Collections.Generic;
 
 public class VacuumBuilding : MonoBehaviour
 {
-    public Hashtable m_bodies;
+    public PlayerResourceManager m_resourceManager;
 
-    public List<VacuumWaypoint> m_waypointsNearToFar;
-
+    List<VacuumWaypoint> m_waypointsNearToFar;
     VacuumEntry m_vacuumEntry;
-
     Collider m_selfCollider;
+    Hashtable m_bodies;
 
-	void Start ()
+    void Start ()
     {
         m_bodies = new Hashtable();
         m_selfCollider = GetComponent<Collider>();
@@ -20,12 +19,12 @@ public class VacuumBuilding : MonoBehaviour
         FindVacuumWaypoints();
         FindVacuumEntry();
     }
-	
-	
+
 	void Update ()
     {
         if (m_selfCollider == null)
             Debug.Log("VacuumBuilding Requires trigger Collider");
+
         m_selfCollider.isTrigger = true;
 
 	    if(m_vacuumEntry == null)
@@ -46,46 +45,17 @@ public class VacuumBuilding : MonoBehaviour
                 m_bodies.Remove(rgbody);
                 continue;
             }
+
             VacuumWaypoint wp = m_waypointsNearToFar[(int) m_bodies[rgbody]];
             Vector3 relativePosW = (wp.transform.position - rgbody.transform.position);
             rgbody.AddForce(relativePosW.normalized / relativePosW.sqrMagnitude);
         }
 	}
 
-    void OnTriggerEnter(Collider collider)
-    {
-        Rigidbody rgbdy = collider.GetComponent<Rigidbody>();
-
-        int targetWp = m_waypointsNearToFar.Count;
-
-        if (rgbdy != null)
-        {
-            for(int i = 0; i < m_waypointsNearToFar.Count; i++)
-            {
-                VacuumWaypoint wp = m_waypointsNearToFar[i];
-
-                float entryToWp = (m_vacuumEntry.transform.position - wp.transform.position).sqrMagnitude;
-                float entryToObj = (m_vacuumEntry.transform.position - rgbdy.transform.position).sqrMagnitude;
-
-                if (entryToObj < entryToWp)
-                {
-                    targetWp = i;
-                    break;
-                }   
-            }
-            if(targetWp != 0)
-            {
-                rgbdy.drag = 3;
-                rgbdy.useGravity = false;
-                m_bodies.Add(rgbdy, targetWp - 1);
-            }
-        }
-    }
-
-    public void BodyVisitedWaypoint(Rigidbody body, VacuumWaypoint waypoint)
+    public void OnBodyVisitedWaypoint(Rigidbody body, VacuumWaypoint waypoint)
     {
         int wpIndx = m_waypointsNearToFar.IndexOf(waypoint);
-        if (wpIndx > 0 && wpIndx <= (int) m_bodies[body])
+        if (wpIndx > 0 && wpIndx <= (int)m_bodies[body])
         {
             try
             {
@@ -96,9 +66,26 @@ public class VacuumBuilding : MonoBehaviour
                 Debug.Log("Doesnt find body in body map");
             }
         }
-        else
+    }
+
+    public void OnBodyVacuumed(Rigidbody body)
+    {
+        ResourceObject resource = body.GetComponent<ResourceObject>();
+
+        if (resource != null)
         {
-            Destroy(body.gameObject);
+            m_resourceManager.OnAddResource(resource);
+        }
+        m_bodies.Remove(body);
+        Destroy(body.gameObject);
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        Rigidbody rgbdy = collider.GetComponent<Rigidbody>();
+        if (rgbdy != null)
+        {
+            Addbody(rgbdy);
         }
     }
 
@@ -108,9 +95,38 @@ public class VacuumBuilding : MonoBehaviour
 
         if (rgbdy != null)
         {
-            rgbdy.useGravity = true;
-            m_bodies.Remove(rgbdy);
+            RemoveBody(rgbdy);
         }
+    }
+
+    void Addbody(Rigidbody rgbdy)
+    {
+        int targetWp = m_waypointsNearToFar.Count;
+        for (int i = 0; i < m_waypointsNearToFar.Count; i++)
+        {
+            VacuumWaypoint wp = m_waypointsNearToFar[i];
+
+            float entryToWp = (m_vacuumEntry.transform.position - wp.transform.position).sqrMagnitude;
+            float entryToObj = (m_vacuumEntry.transform.position - rgbdy.transform.position).sqrMagnitude;
+
+            if (entryToObj < entryToWp)
+            {
+                targetWp = i;
+                break;
+            }
+        }
+        if (targetWp != 0)
+        {
+            rgbdy.drag = 3;
+            rgbdy.useGravity = false;
+            m_bodies.Add(rgbdy, targetWp - 1);
+        }
+    }
+
+    void RemoveBody(Rigidbody rgbdy)
+    {
+        rgbdy.useGravity = true;
+        m_bodies.Remove(rgbdy);
     }
 
     int FindVacuumWaypoints()

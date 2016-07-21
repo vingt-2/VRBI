@@ -62,9 +62,9 @@ public class PickAxeTool : MonoBehaviour
             m_pickAxeHit = gobj;
             m_collideTime = Time.time;
 
-            if (gobj.GetComponent<RockMine>())
+            if (gobj.GetComponent<RockBuilding>())
             {
-                bool successHit = gobj.GetComponent<RockMine>().OnPickAxeHit(m_collider.transform.position, velEst.m_velocity);
+                bool successHit = gobj.GetComponent<RockBuilding>().OnPickAxeHit(m_collider.transform.position, velEst.m_velocity);
 
                 if (successHit && parent && parent.GetComponent<VRControllerRumble>())
                 {

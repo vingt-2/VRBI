@@ -23,7 +23,7 @@ public class VacuumWaypoint : MonoBehaviour {
         if(rgbdy != null)
         {
             if(m_parentBuilding != null)
-                m_parentBuilding.BodyVisitedWaypoint(rgbdy, this);
+                m_parentBuilding.OnBodyVisitedWaypoint(rgbdy, this);
         }
     }
 }

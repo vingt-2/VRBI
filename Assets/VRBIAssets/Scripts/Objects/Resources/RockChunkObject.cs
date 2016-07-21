@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-class WoodChunkObject : ResourceObject
+class RockChunkObject : ResourceObject
 {
     void Start()
     {
-        m_resourceName = "WoodChunk";
+        m_resourceName = "RockChunk";
     }
 
     void Update()

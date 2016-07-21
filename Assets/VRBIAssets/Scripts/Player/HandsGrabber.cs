@@ -32,7 +32,7 @@ public class HandsGrabber : MonoBehaviour {
 	public void OnGrabObject(GameObject obj)
 	{
 		m_grabbedObject = obj;
-		obj.transform.parent = this.transform.parent;
+		obj.transform.parent = this.transform.parent.parent;
 		Rigidbody rgb = obj.GetComponent<Rigidbody>();
 		rgb.isKinematic = true;
 	}

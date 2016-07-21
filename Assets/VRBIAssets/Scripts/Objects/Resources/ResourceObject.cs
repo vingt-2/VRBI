@@ -3,20 +3,11 @@ using System.Collections;
 
 public class ResourceObject : MonoBehaviour {
 
-    GameObject m_objectPrefab;
+    public string m_resourceName;
 
 	void Start ()
-    {
-
-	}
+    {}
 	
 	void Update ()
-    {
-        if (gameObject.tag != "Resource")
-        {
-            gameObject.tag = "Resource";
-        }
-
-
-    }
+    {}
 }

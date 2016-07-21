@@ -4,14 +4,17 @@ using System.Collections;
 public class VacuumEntry : MonoBehaviour {
 
     public VacuumBuilding m_parentBuilding;
+	void Start () {}
+	
+	void Update () {}
 
-	void Start ()
+    void OnTriggerEnter(Collider otherCollider)
     {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        Rigidbody rgboby = otherCollider.GetComponent<Rigidbody>();
+
+        if (rgboby != null)
+        {
+            m_parentBuilding.OnBodyVacuumed(rgboby);
+        }
+    }
 }

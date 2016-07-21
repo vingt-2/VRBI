@@ -126,6 +126,12 @@ public class PlayerController : MonoBehaviour
             GameObject grabObj = null;
             foreach (GameObject collideObject in handGrabber.m_collidesWith)
             {
+                if(collideObject == null)
+                {
+                    handGrabber.m_collidesWith.Remove(collideObject);
+                    break;
+                }
+
                 if (collideObject.GetComponent<GrabableObject>() != null)
                 {
                     grabObj = collideObject;

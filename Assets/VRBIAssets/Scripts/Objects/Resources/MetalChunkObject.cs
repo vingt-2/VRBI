@@ -2,11 +2,9 @@
 
 class MetalChunkObject : ResourceObject
 {
-    public const string RESOURCE_NAME = "Metal Chunk";
-
     void Start()
     {
-
+        m_resourceName = "MetalChunk";
     }
 
     void Update()
