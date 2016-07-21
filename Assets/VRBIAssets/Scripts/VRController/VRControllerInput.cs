@@ -19,6 +19,7 @@ public class VRControllerInput : MonoBehaviour
         public float radius, angle;
     }
 
+    public Vector2 m_touchPadCoords = Vector2.zero;
     public float m_touchPadAngle = 0;
     public float m_touchPadRadius = 0;
 
@@ -75,7 +76,6 @@ public class VRControllerInput : MonoBehaviour
     void UpdateTouchState(TouchState touchState, Vector2 coords)
     {
         touchState.cartesianCoords = coords;
-
         touchState.radius = coords.magnitude;
 
         float dotV = Vector2.Dot(coords, new Vector2(1, 0));
@@ -143,6 +143,7 @@ public class VRControllerInput : MonoBehaviour
 
         m_touchPadAngle = 180 * m_touchState.angle / Mathf.PI;
         m_touchPadRadius = m_touchState.radius;
+        m_touchPadCoords = m_touchState.cartesianCoords;
 
         if(m_exposedButtonStates.Count > 0)
         {

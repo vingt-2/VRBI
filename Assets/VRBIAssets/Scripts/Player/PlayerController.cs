@@ -57,16 +57,18 @@ public class PlayerController : MonoBehaviour
                 ReleaseEquipped();
             }
         }
-
-        if (Vector3.Dot(transform.up, new Vector3(0,-1,0)) > 0.4f)
+        if(m_controllerSide == "Right" || m_armInventory != null)
         {
-            m_scale = Mathf.Min(m_scale + m_popUpDt, 1);
+            if (Vector3.Dot(transform.up, new Vector3(0, -1, 0)) > 0.4f)
+            {
+                m_scale = Mathf.Min(m_scale + m_popUpDt, 1);
+            }
+            else
+            {
+                m_scale = Mathf.Max(m_scale - m_popUpDt, 0);
+            }
+            m_armInventory.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
         }
-        else
-        {
-            m_scale = Mathf.Max(m_scale - m_popUpDt, 0);
-        }
-        m_armInventory.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
     }
 
     void FindOtherController()

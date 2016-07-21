@@ -5,15 +5,18 @@ using System.Collections.Generic;
 public class VacuumBuilding : MonoBehaviour
 {
     public PlayerResourceManager m_resourceManager;
+    public float m_dragModifier;
 
     List<VacuumWaypoint> m_waypointsNearToFar;
     VacuumEntry m_vacuumEntry;
     Collider m_selfCollider;
     Hashtable m_bodies;
+    Hashtable m_originalDrag;
 
     void Start ()
     {
         m_bodies = new Hashtable();
+        m_originalDrag = new Hashtable();
         m_selfCollider = GetComponent<Collider>();
         m_waypointsNearToFar = new List<VacuumWaypoint>();
         FindVacuumWaypoints();
@@ -45,8 +48,8 @@ public class VacuumBuilding : MonoBehaviour
                 m_bodies.Remove(rgbody);
                 continue;
             }
-
-            VacuumWaypoint wp = m_waypointsNearToFar[(int) m_bodies[rgbody]];
+            VacuumWaypoint wp = m_waypointsNearToFar[(int)m_bodies[rgbody]];
+            Vector3 toEntry = wp.transform.position - m_vacuumEntry.transform.position;
             Vector3 relativePosW = (wp.transform.position - rgbody.transform.position);
             rgbody.AddForce(relativePosW.normalized / relativePosW.sqrMagnitude);
         }
@@ -119,7 +122,8 @@ public class VacuumBuilding : MonoBehaviour
         }
         if (targetWp != 0)
         {
-            rgbdy.drag = 3;
+            m_originalDrag.Add(rgbdy, rgbdy.drag);
+            rgbdy.drag = m_dragModifier;
             rgbdy.useGravity = false;
             m_bodies.Add(rgbdy, targetWp - 1);
         }
@@ -127,7 +131,9 @@ public class VacuumBuilding : MonoBehaviour
 
     void RemoveBody(Rigidbody rgbdy)
     {
+        rgbdy.drag = (float) m_originalDrag[rgbdy];
         rgbdy.useGravity = true;
+        m_originalDrag.Remove(rgbdy);
         m_bodies.Remove(rgbdy);
     }
 
