@@ -8,9 +8,13 @@ public class HandsGrabber : MonoBehaviour {
 
 	public GameObject m_grabbedObject;
 
+    private VRControllerRumble m_controllerRumble;
+
 	void Start ()
 	{
 		m_collidesWith = new List<GameObject>();
+
+        m_controllerRumble = transform.parent.GetComponentInParent<VRControllerRumble>();
 	}
 	
 	// Update is called once per frame
@@ -21,7 +25,9 @@ public class HandsGrabber : MonoBehaviour {
 
 	void OnTriggerEnter(Collider otherCollider)
 	{
-		m_collidesWith.Add(otherCollider.gameObject);
+        if (m_controllerRumble)
+            m_controllerRumble.OnRumble(0.3f, 1);
+        m_collidesWith.Add(otherCollider.gameObject);
 	}
 
 	void OnTriggerExit(Collider otherCollider)

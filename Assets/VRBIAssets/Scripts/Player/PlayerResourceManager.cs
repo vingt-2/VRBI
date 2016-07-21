@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerResourceManager : MonoBehaviour {
 
-    Dictionary<string, int> m_inventory;
+    public Dictionary<string, int> m_inventory;
     VacuumBuilding m_vacuumBuilding;
 	
 	void Start ()
