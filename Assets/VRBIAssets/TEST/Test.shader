@@ -1,7 +1,7 @@
 // Shader created with Shader Forge v1.26 
 // Shader Forge (c) Neat Corporation / Joachim Holmer - http://www.acegikmo.com/shaderforge/
 // Note: Manually altering this data may prevent you from opening it in Shader Forge
-/*SF_DATA;ver:1.26;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,lico:1,lgpr:1,limd:1,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:False,hqlp:False,rprd:False,enco:False,rmgx:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:0,bdst:1,dpts:2,wrdp:True,dith:0,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:False,qofs:0,qpre:1,rntp:1,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False;n:type:ShaderForge.SFN_Final,id:4013,x:32719,y:32712,varname:node_4013,prsc:2|diff-5638-OUT,spec-7667-OUT,gloss-5879-OUT,normal-9289-RGB;n:type:ShaderForge.SFN_Tex2d,id:1706,x:31774,y:32585,ptovrint:False,ptlb:Grass_Diffuse,ptin:_Grass_Diffuse,varname:node_1706,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:a4de67839418e71429744fb0d4990686,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Lerp,id:5638,x:32415,y:32803,varname:node_5638,prsc:2|A-8359-OUT,B-5785-OUT,T-5947-RGB;n:type:ShaderForge.SFN_Tex2d,id:1499,x:32140,y:32874,ptovrint:False,ptlb:Stone D,ptin:_StoneD,varname:_GrassD_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:af1665ead4df489489588f06cddb8d52,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Multiply,id:8359,x:32375,y:32980,varname:node_8359,prsc:2|A-1499-RGB,B-2311-RGB;n:type:ShaderForge.SFN_Tex2d,id:2311,x:32140,y:33095,ptovrint:False,ptlb:Stone Occlu,ptin:_StoneOcclu,varname:_StoneD_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:27de7d28ffd3e6242a302f40728bd1bd,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Tex2d,id:5947,x:31839,y:32820,ptovrint:False,ptlb:Mask,ptin:_Mask,varname:node_5947,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Tex2d,id:9289,x:32524,y:33075,ptovrint:False,ptlb:node_9289,ptin:_node_9289,varname:node_9289,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:3,isnm:True;n:type:ShaderForge.SFN_Multiply,id:7667,x:32561,y:32443,varname:node_7667,prsc:2|A-5638-OUT,B-7278-OUT;n:type:ShaderForge.SFN_ValueProperty,id:7278,x:32257,y:32411,ptovrint:False,ptlb:Specpow,ptin:_Specpow,varname:node_7278,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:0;n:type:ShaderForge.SFN_ValueProperty,id:5879,x:32257,y:32493,ptovrint:False,ptlb:Glossines,ptin:_Glossines,varname:node_5879,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:0;n:type:ShaderForge.SFN_Lerp,id:5785,x:32295,y:32589,varname:node_5785,prsc:2|A-1706-RGB,B-2865-RGB,T-1692-RGB;n:type:ShaderForge.SFN_Tex2d,id:1692,x:32028,y:32636,ptovrint:False,ptlb:Mask2,ptin:_Mask2,varname:_Mask_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Tex2d,id:2865,x:31774,y:32396,ptovrint:False,ptlb:node_2865,ptin:_node_2865,varname:node_2865,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:0,isnm:False;proporder:1706-1499-2311-5947-9289-7278-5879-1692-2865;pass:END;sub:END;*/
+/*SF_DATA;ver:1.26;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,lico:1,lgpr:1,limd:1,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:False,hqlp:False,rprd:False,enco:False,rmgx:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:0,bdst:1,dpts:2,wrdp:True,dith:0,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:False,qofs:0,qpre:1,rntp:1,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False;n:type:ShaderForge.SFN_Final,id:4013,x:32719,y:32712,varname:node_4013,prsc:2|diff-5638-OUT,spec-7667-OUT,gloss-5879-OUT,normal-9289-RGB;n:type:ShaderForge.SFN_Tex2d,id:1706,x:31774,y:32585,ptovrint:False,ptlb:Grass_Diffuse,ptin:_Grass_Diffuse,varname:node_1706,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:a4de67839418e71429744fb0d4990686,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Lerp,id:5638,x:32415,y:32803,varname:node_5638,prsc:2|A-401-OUT,B-5785-OUT,T-5947-RGB;n:type:ShaderForge.SFN_Tex2d,id:1499,x:32140,y:32874,ptovrint:False,ptlb:Stone D,ptin:_StoneD,varname:_GrassD_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:af1665ead4df489489588f06cddb8d52,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Multiply,id:8359,x:32316,y:32976,varname:node_8359,prsc:2|A-1499-RGB,B-2311-RGB;n:type:ShaderForge.SFN_Tex2d,id:2311,x:32140,y:33095,ptovrint:False,ptlb:Stone Occlu,ptin:_StoneOcclu,varname:_StoneD_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:27de7d28ffd3e6242a302f40728bd1bd,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Tex2d,id:5947,x:31839,y:32820,ptovrint:False,ptlb:Mask,ptin:_Mask,varname:node_5947,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Tex2d,id:9289,x:32524,y:33075,ptovrint:False,ptlb:node_9289,ptin:_node_9289,varname:node_9289,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:3,isnm:True;n:type:ShaderForge.SFN_Multiply,id:7667,x:32561,y:32443,varname:node_7667,prsc:2|A-5638-OUT,B-7278-OUT;n:type:ShaderForge.SFN_ValueProperty,id:7278,x:32257,y:32411,ptovrint:False,ptlb:Specpow,ptin:_Specpow,varname:node_7278,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:0;n:type:ShaderForge.SFN_ValueProperty,id:5879,x:32257,y:32493,ptovrint:False,ptlb:Glossines,ptin:_Glossines,varname:node_5879,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,v1:0;n:type:ShaderForge.SFN_Lerp,id:5785,x:32295,y:32589,varname:node_5785,prsc:2|A-1706-RGB,B-2865-RGB,T-1692-RGB;n:type:ShaderForge.SFN_Tex2d,id:1692,x:32028,y:32636,ptovrint:False,ptlb:Mask2,ptin:_Mask2,varname:_Mask_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Tex2d,id:2865,x:31774,y:32396,ptovrint:False,ptlb:node_2865,ptin:_node_2865,varname:node_2865,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Multiply,id:401,x:32358,y:33203,varname:node_401,prsc:2|A-8359-OUT,B-689-RGB;n:type:ShaderForge.SFN_Color,id:689,x:32128,y:33268,ptovrint:False,ptlb:node_689,ptin:_node_689,varname:node_689,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:0.5,c2:0.5,c3:0.5,c4:1;proporder:1706-1499-2311-5947-9289-7278-5879-1692-2865-689;pass:END;sub:END;*/
 
 Shader "Shader Forge/Test" {
     Properties {
@@ -14,6 +14,7 @@ Shader "Shader Forge/Test" {
         _Glossines ("Glossines", Float ) = 0
         _Mask2 ("Mask2", 2D) = "white" {}
         _node_2865 ("node_2865", 2D) = "white" {}
+        _node_689 ("node_689", Color) = (0.5,0.5,0.5,1)
     }
     SubShader {
         Tags {
@@ -46,6 +47,7 @@ Shader "Shader Forge/Test" {
             uniform float _Glossines;
             uniform sampler2D _Mask2; uniform float4 _Mask2_ST;
             uniform sampler2D _node_2865; uniform float4 _node_2865_ST;
+            uniform float4 _node_689;
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
@@ -99,7 +101,7 @@ Shader "Shader Forge/Test" {
                 float4 _node_2865_var = tex2D(_node_2865,TRANSFORM_TEX(i.uv0, _node_2865));
                 float4 _Mask2_var = tex2D(_Mask2,TRANSFORM_TEX(i.uv0, _Mask2));
                 float4 _Mask_var = tex2D(_Mask,TRANSFORM_TEX(i.uv0, _Mask));
-                float3 node_5638 = lerp((_StoneD_var.rgb*_StoneOcclu_var.rgb),lerp(_Grass_Diffuse_var.rgb,_node_2865_var.rgb,_Mask2_var.rgb),_Mask_var.rgb);
+                float3 node_5638 = lerp(((_StoneD_var.rgb*_StoneOcclu_var.rgb)*_node_689.rgb),lerp(_Grass_Diffuse_var.rgb,_node_2865_var.rgb,_Mask2_var.rgb),_Mask_var.rgb);
                 float3 specularColor = (node_5638*_Specpow);
                 float3 directSpecular = (floor(attenuation) * _LightColor0.xyz) * pow(max(0,dot(halfDirection,normalDirection)),specPow)*specularColor;
                 float3 specular = directSpecular;
@@ -146,6 +148,7 @@ Shader "Shader Forge/Test" {
             uniform float _Glossines;
             uniform sampler2D _Mask2; uniform float4 _Mask2_ST;
             uniform sampler2D _node_2865; uniform float4 _node_2865_ST;
+            uniform float4 _node_689;
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
@@ -199,7 +202,7 @@ Shader "Shader Forge/Test" {
                 float4 _node_2865_var = tex2D(_node_2865,TRANSFORM_TEX(i.uv0, _node_2865));
                 float4 _Mask2_var = tex2D(_Mask2,TRANSFORM_TEX(i.uv0, _Mask2));
                 float4 _Mask_var = tex2D(_Mask,TRANSFORM_TEX(i.uv0, _Mask));
-                float3 node_5638 = lerp((_StoneD_var.rgb*_StoneOcclu_var.rgb),lerp(_Grass_Diffuse_var.rgb,_node_2865_var.rgb,_Mask2_var.rgb),_Mask_var.rgb);
+                float3 node_5638 = lerp(((_StoneD_var.rgb*_StoneOcclu_var.rgb)*_node_689.rgb),lerp(_Grass_Diffuse_var.rgb,_node_2865_var.rgb,_Mask2_var.rgb),_Mask_var.rgb);
                 float3 specularColor = (node_5638*_Specpow);
                 float3 directSpecular = attenColor * pow(max(0,dot(halfDirection,normalDirection)),specPow)*specularColor;
                 float3 specular = directSpecular;
