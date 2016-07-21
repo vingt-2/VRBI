@@ -101,6 +101,8 @@ public class VacuumBuilding : MonoBehaviour
 
     void Addbody(Rigidbody rgbdy)
     {
+        if (!rgbdy.GetComponent<ResourceObject>())
+            return;
         int targetWp = m_waypointsNearToFar.Count;
         for (int i = 0; i < m_waypointsNearToFar.Count; i++)
         {

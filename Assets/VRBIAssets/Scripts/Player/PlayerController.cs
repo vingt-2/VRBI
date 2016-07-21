@@ -18,12 +18,18 @@ public class PlayerController : MonoBehaviour
 
     private float m_lastEquipTime;
 
+    private InventoryPanel m_armInventory;
+    public float m_popUpDt = 0.2f;
+    public float m_scale = 0;
+
     void Start()
     {
         m_equippedObject = (GameObject)Instantiate(m_prefabHandObject, transform.TransformPoint(Vector3.zero), Quaternion.identity);
         m_equippedObject.transform.parent = this.transform;
 
         m_controllerInput = GetComponent<VRControllerInput>();
+
+        m_armInventory = GetComponentInChildren<InventoryPanel>();
     }
 
 
@@ -51,6 +57,16 @@ public class PlayerController : MonoBehaviour
                 ReleaseEquipped();
             }
         }
+
+        if (Vector3.Dot(transform.up, new Vector3(0,-1,0)) > 0.4f)
+        {
+            m_scale = Mathf.Min(m_scale + m_popUpDt, 1);
+        }
+        else
+        {
+            m_scale = Mathf.Max(m_scale - m_popUpDt, 0);
+        }
+        m_armInventory.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
     }
 
     void FindOtherController()
@@ -147,7 +163,9 @@ public class PlayerController : MonoBehaviour
                 if (m_controllerInput.m_triggerButtonState.buttonDown)
                 {
                     // Release from other hand if already grabbing this object
-                    if (otherhandGrabber && otherhandGrabber.m_grabbedObject == grabObj)
+                    if (otherhandGrabber && 
+                        otherhandGrabber.m_grabbedObject == grabObj &&
+                        !grabObj.GetComponent<BasketItem>())
                     {
                         otherhandGrabber.OnReleaseObject();
                     }
