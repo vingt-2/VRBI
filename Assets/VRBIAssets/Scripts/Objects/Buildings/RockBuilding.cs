@@ -1,3 +1,4 @@
+
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
@@ -5,7 +6,6 @@ public class RockBuilding : MonoBehaviour
 {
 
     public float m_requiredHitSpeed = 6;
-
     public float m_probability = 0.3f;
 
     public GameObject m_rockChunkPrefab;

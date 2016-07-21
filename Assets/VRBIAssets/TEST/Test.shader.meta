@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: f3aafb2d8930dd244ab8ed674ea00a84
+timeCreated: 1469061467
+licenseType: Free
+ShaderImporter:
+  defaultTextures:
+  - _Grass_Diffuse: {fileID: 2800000, guid: a4de67839418e71429744fb0d4990686, type: 3}
+  - _StoneD: {fileID: 2800000, guid: af1665ead4df489489588f06cddb8d52, type: 3}
+  - _StoneOcclu: {fileID: 2800000, guid: 27de7d28ffd3e6242a302f40728bd1bd, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
